@@ -31,6 +31,32 @@ module.exports = {
             use: [MiniCssExtractPlugin.loader, 'css-loader'],
             // use: ["style-loader", "css-loader"],
           },
+          {
+            test: /\.less$/i,
+            loader: [
+              // compiles Less to CSS
+              "style-loader",
+              "css-loader",
+              "less-loader",
+            ],
+          },
+          {
+            test: /\.styl$/i,
+            loader: [
+              // compiles Less to CSS
+              "style-loader",
+              "css-loader",
+              "stylus-loader",
+            ],
+          },
+          {
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+              {
+                loader: 'file-loader',
+              },
+            ],
+          },
         ],
       },
   };

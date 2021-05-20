@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
@@ -17,12 +16,7 @@ module.exports = {
             filename: 'test.html',//生成的文件名
             template: 'src/assets/index.html'//需要打包的文件路径
         }
-    ),
-    new MiniCssExtractPlugin( {
-        filename: '[name].[contenthash].css',
-      chunkFilename: '[id].[contenthash].css'}
-      ),
-    ],
+    ),],
     
     module: {
         rules: [
@@ -30,8 +24,37 @@ module.exports = {
             test: /\.css$/i,
             use: ["style-loader", "css-loader"],
           },
+          {
+            test: /\.less$/i,
+            loader: [
+              // compiles Less to CSS
+              "style-loader",
+              "css-loader",
+              "less-loader",
+            ],
+          },
+          {
+            test: /\.styl$/i,
+            loader: [
+              // compiles Less to CSS
+              "style-loader",
+              "css-loader",
+              "stylus-loader",
+            ],
+          },
+          {
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+              {
+                loader: 'file-loader',
+              },
+            ],
+          },
+
+          
+          
         ],
-      },
+              },
   };
 
  
